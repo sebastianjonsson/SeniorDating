@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27130.2003
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SeniorDating", "SeniorDating\SeniorDating.csproj", "{BF2B6632-50F2-4A24-80A6-BA70B0CB1651}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Logic", "Logic\Logic.csproj", "{F36E9CDD-16E5-4250-B4EE-7F92BD4DBE56}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{BF2B6632-50F2-4A24-80A6-BA70B0CB1651}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BF2B6632-50F2-4A24-80A6-BA70B0CB1651}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BF2B6632-50F2-4A24-80A6-BA70B0CB1651}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BF2B6632-50F2-4A24-80A6-BA70B0CB1651}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F36E9CDD-16E5-4250-B4EE-7F92BD4DBE56}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F36E9CDD-16E5-4250-B4EE-7F92BD4DBE56}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F36E9CDD-16E5-4250-B4EE-7F92BD4DBE56}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F36E9CDD-16E5-4250-B4EE-7F92BD4DBE56}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {8119A993-4E04-411A-8320-6357D68CDB2B}
+	EndGlobalSection
+EndGlobal
