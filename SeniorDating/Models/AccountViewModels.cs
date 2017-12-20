@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace SeniorDating.Models
@@ -80,7 +81,27 @@ namespace SeniorDating.Models
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
 
-        public string Nick { get; set; }
+        [Required]
+        [StringLength(50, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 4)]
+        public string Name { get; set; }
+
+        [Range(65, 150)]
+        [Required]
+        public int Age { get; set; }
+
+        [Required]
+        public Gender Gender { get; set; }
+
+        [Required]
+        [Display(Name = "About me")]
+        [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long and max {1} characters long.", MinimumLength = 20)]
+        public string About { get; set; }
+    }
+
+    public enum Gender
+    {
+        Male,
+        Female
     }
 
     public class ResetPasswordViewModel

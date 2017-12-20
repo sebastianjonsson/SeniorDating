@@ -20,7 +20,7 @@ namespace Logic
 
             for (int i = 0; i < 50; i++)
             {
-                var user = new ApplicationUser { Nick = "user" + i, UserName = $"user{i}@test.se", Email = $"user{i}@test.se" };
+                var user = new ApplicationUser { Name = "user" + i, UserName = $"user{i}@test.se", Email = $"user{i}@test.se", Age = 70, Gender = "Male", About = "Snygg" };
 
                 userManager.CreateAsync(user, "User1!").Wait();
 

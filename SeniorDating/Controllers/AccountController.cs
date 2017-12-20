@@ -151,7 +151,7 @@ namespace SeniorDating.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email, Nick = model.Nick };
+                var user = new ApplicationUser { UserName = model.Email, Email = model.Email, Name = model.Name, Age = model.Age, Gender = model.Gender.ToString(), About = model.About };
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
