@@ -1,0 +1,36 @@
+﻿@using SeniorDating.Models;
+@using Microsoft.AspNet.Identity
+@model ApplicationUser
+@{
+    ViewBag.Title = "Profile";
+}
+
+<div class="container-fluid">
+    <h2>@Html.DisplayFor(m => m.Name)</h2>
+</div>
+
+
+<br>
+
+<div class="row">
+    <div class="col-md-3">
+        <div class="panel panel-default">
+            <div class="panel-heading">Age</div>
+            <div class="panel-body">@Html.DisplayFor(m => m.Age)</div>
+            <div class="panel-heading">Gender</div>
+            <div class="panel-body">@Html.DisplayFor(m => m.Gender)</div>
+            <div class="panel-heading">Looking For</div>
+            <div class="panel-body">@Html.DisplayFor(m => m.LookingFor)</div>
+        </div>
+    </div>
+</div>
+
+<div class=" row">
+    <div class=" col-md-6">
+        <div class="panel panel-default">
+        <div class="panel-heading">About me</div>
+        <div class="panel-body">@Html.DisplayFor(m => m.About)</div>
+            </div>
+    </div>
+</div>
+
