@@ -96,6 +96,17 @@ namespace SeniorDating.Models
         [Display(Name = "About me")]
         [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long and max {1} characters long.", MinimumLength = 20)]
         public string About { get; set; }
+
+        [Required]
+        [Display(Name = "Looking For")]
+        public LookingFor LookingFor { get; set; }
+    }
+
+    public enum LookingFor
+    {
+        Male,
+        Female,
+        Both
     }
 
     public enum Gender

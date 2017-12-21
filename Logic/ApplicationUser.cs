@@ -19,6 +19,8 @@ namespace SeniorDating.Models
 
         public string About { get; set; }
 
+        public string LookingFor { get; set; }
+
         public virtual ICollection<Post> Posts { get; set; }
 
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
