@@ -39,7 +39,7 @@ namespace SeniorDating.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id, Text")] Post posts)
+        public ActionResult Edit([Bind(Include = "Id, Text")] Post posts, string Id)
         {
             if (ModelState.IsValid)
             {
