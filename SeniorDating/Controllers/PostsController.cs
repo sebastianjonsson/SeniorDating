@@ -5,6 +5,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Data.Entity;
+using System.Net;
 
 namespace SeniorDating.Controllers
 {
@@ -19,6 +20,34 @@ namespace SeniorDating.Controllers
         public ActionResult Create(string id)
         {
             return View();
+        }
+
+        public ActionResult Edit(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Post posts = db.Posts.Find(id);
+
+            if (posts == null)
+            {
+                return HttpNotFound();
+            }
+            return View(posts);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit([Bind(Include = "Id, Text")] Post posts)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Entry(posts).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            return View(posts);
         }
         [HttpPost]
         public ActionResult Create(Post post, string id)
