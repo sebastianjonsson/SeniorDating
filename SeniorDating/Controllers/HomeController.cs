@@ -6,11 +6,13 @@ using System.Web.Mvc;
 
 namespace SeniorDating.Controllers
 {
-    public class HomeController : Controller
+    public class HomeController : BaseController
     {
         public ActionResult Index()
         {
-            return View();
+            var users = db.Users.ToList();
+            return View(users);
+            
         }
 
         public ActionResult About()
