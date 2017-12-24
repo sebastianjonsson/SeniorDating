@@ -18,20 +18,41 @@
 
     </div>
 </div>
+@if (Request.IsAuthenticated)
+{
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+        </tr>
 
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Name)
-        </th>
-     </tr>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name) - @Html.ActionLink("Besök", "Edit")
+                </td>
+            </tr>
+        }
+    </table>
+}
+else
+{
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+        </tr>
 
-    @foreach (var item in Model)
+        @foreach (var item in Model)
     {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.Name)
+                @Html.DisplayFor(modelItem => item.Name) - @Html.ActionLink("Besök", "Register", "Account")
             </td>
         </tr>
     }
-</table>
+    </table>
+}

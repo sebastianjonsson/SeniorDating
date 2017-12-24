@@ -10,7 +10,10 @@ namespace SeniorDating.Controllers
     {
         public ActionResult Index()
         {
+
             var users = db.Users.ToList();
+            Random rnd = new Random();
+            users = users.OrderBy(emp => rnd.Next()).Take(10).ToList();
             return View(users);
             
         }

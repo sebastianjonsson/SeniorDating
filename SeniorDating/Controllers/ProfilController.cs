@@ -25,7 +25,6 @@ namespace SeniorDating.Controllers
             
 
             return View(model);
-
         }
     }
 }
