@@ -15,7 +15,19 @@ namespace SeniorDating.Controllers
             Random rnd = new Random();
             users = users.OrderBy(emp => rnd.Next()).Take(10).ToList();
             return View(users);
-            
+        }
+        [HttpPost]
+        public ActionResult Index(string searchString)
+        {
+            var users = from m in db.Users
+                         select m;
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                users = users.Where(s => s.Name.Contains(searchString));
+            }
+
+            return View("Index", users);
         }
 
         public ActionResult About()
