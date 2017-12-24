@@ -23,8 +23,19 @@ namespace SeniorDating.Controllers
             model.LookingFor = user.LookingFor;
             model.About = user.About;
             
-
             return View(model);
+        }
+
+        public ActionResult OtherProfiles(ApplicationUser model, string id)
+        {
+            var user = repository.GetUserById(id);
+            model.Age = user.Age;
+            model.Name = user.Name;
+            model.Gender = user.Gender;
+            model.LookingFor = user.LookingFor;
+            model.About = user.About;
+
+            return View("Profiles", model);
         }
     }
 }

@@ -20,5 +20,12 @@ namespace Logic
 
             return user;
         }
+
+        public ApplicationUser GetUserById(string id)
+        {
+            var user = context.Users.Single(x => x.Id.Equals(id));
+
+            return user;
+        }
     }
 }
