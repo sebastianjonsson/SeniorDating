@@ -5,6 +5,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using SeniorDating.Models;
+using System.Data.Entity;
 
 namespace SeniorDating.Controllers
 {
@@ -36,6 +37,61 @@ namespace SeniorDating.Controllers
             model.About = user.About;
 
             return View("Profiles", model);
+        }
+
+        public ActionResult EditProfile(string id)
+        {
+            try
+            {
+                if (id == null)
+                {
+                    RedirectToAction("Index", "Home");
+                }
+
+                var user = db.Users.FirstOrDefault(u => u.Id == id);
+
+                if (user == null)
+                {
+                    return HttpNotFound();
+                }
+
+                return View(user);
+            }
+            catch
+            {
+                RedirectToAction("Index", "Home");
+            }
+
+            return View(id);
+        }
+
+        [HttpPost]
+        public ActionResult EditProfile(ApplicationUser editedUser)
+        {
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    var user = db.Users.FirstOrDefault(u => u.Id == editedUser.Id);
+
+                    user.Name = editedUser.Name;
+                    user.Age = editedUser.Age;
+                    user.About = editedUser.About;
+
+                    db.Entry(user).State = EntityState.Modified;
+                    db.SaveChanges();
+
+                    return RedirectToAction("Profiles", "Profil", new { id = user.Id });
+
+                }
+                catch
+                {
+                    RedirectToAction("Index", "Home");
+                }
+            }
+
+            return View("Profiles", editedUser);
+
         }
     }
 }

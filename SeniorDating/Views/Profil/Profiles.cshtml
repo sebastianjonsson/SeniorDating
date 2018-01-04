@@ -34,3 +34,21 @@
         </div>
     </div>
 </div>
+
+    @{
+        string CurrentURL = Request.Url.AbsoluteUri;
+    }
+    
+        @{
+            if (!CurrentURL.Contains("Other"))
+            {
+                <span class="right">
+                    <a href="@Url.Action("EditProfile", "Profil", new { id = User.Identity.GetUserId() })">
+                        Edit Profile
+                    </a>
+                </span>
+            }
+        }
+
+       
+
