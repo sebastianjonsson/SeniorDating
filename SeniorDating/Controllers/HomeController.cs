@@ -20,6 +20,7 @@ namespace SeniorDating.Controllers
         public ActionResult Index(string searchString)
         {
             var users = from m in db.Users
+                        where m.Hidden == false
                          select m;
 
             if (!String.IsNullOrEmpty(searchString))

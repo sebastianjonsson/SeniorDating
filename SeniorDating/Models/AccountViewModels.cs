@@ -100,6 +100,10 @@ namespace SeniorDating.Models
         [Required]
         [Display(Name = "Looking For")]
         public LookingFor LookingFor { get; set; }
+
+        [Required]
+        [Display(Name = "Hidden when other users are searching for you")]
+        public bool Hidden { get; set; }
     }
 
     public enum LookingFor
