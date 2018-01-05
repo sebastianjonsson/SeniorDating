@@ -102,7 +102,7 @@ namespace SeniorDating.Models
         public LookingFor LookingFor { get; set; }
 
         [Required]
-        [Display(Name = "Hidden when other users are searching for you")]
+        [Display(Name = "Hidden on search")]
         public bool Hidden { get; set; }
     }
 
