@@ -6,6 +6,7 @@ using System.Web;
 using System.Web.Mvc;
 using SeniorDating.Models;
 using System.Data.Entity;
+using System.IO;
 
 namespace SeniorDating.Controllers
 {
@@ -25,6 +26,19 @@ namespace SeniorDating.Controllers
             model.About = user.About;
             
             return View(model);
+        }
+
+        public ActionResult Image(string Id)
+        {
+
+            var user = db.Users.Single(x => x.Id == Id);
+
+            if (user.Content != null)
+            {
+                var image = db.Users.Single(x => x.Id == Id);
+                return File(image.Picture, image.Content);
+            }
+            return View();
         }
 
         public ActionResult OtherProfiles(ApplicationUser model, string id)
@@ -94,6 +108,37 @@ namespace SeniorDating.Controllers
 
             return View("Profiles", user);
 
+        }
+
+        [HttpPost]
+
+        public ActionResult Picture(string Id, HttpPostedFileBase upload)
+        {
+            try
+            {
+                var user = db.Users.Single(x => x.Id == Id);
+
+                if (upload != null && upload.ContentLength > 0)
+                {
+                    user.File = upload.FileName;
+
+                    user.Content = upload.ContentType;
+
+                using (var reader = new BinaryReader(upload.InputStream))
+                    {
+                        user.Picture = reader.ReadBytes(upload.ContentLength);
+                    }
+                    db.Entry(user).State = EntityState.Modified;
+                    db.SaveChanges();
+                }
+                return RedirectToAction("Profiles", "Profil", new { Id = Id });
+            }
+            catch
+            {
+
+                RedirectToAction("Profiles", "Profil");
+            }
+             return View();
         }
     }
 }

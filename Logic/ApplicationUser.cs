@@ -22,6 +22,11 @@ namespace SeniorDating.Models
         public string LookingFor { get; set; }
 
         public bool Hidden { get; set; }
+        public byte[] Picture { get; set; }
+
+        public string File { get; set; }
+
+        public string Content { get; set; }
 
         public virtual ICollection<Post> Posts { get; set; }
 

@@ -1,6 +1,5 @@
-﻿@using SeniorDating.Models
-@using Microsoft.AspNet.Identity
-@model ApplicationUser
+﻿@using Microsoft.AspNet.Identity
+@model SeniorDating.Models.ApplicationUser
 @{
     ViewBag.Title = "Profile";
 }
@@ -11,6 +10,23 @@
 
 
 <br>
+
+<div>
+
+    <img src="@Url.Action("Image", "Profil", new { Id = Model.Id })" />
+
+    @if (HttpContext.Current.User.Identity.GetUserId().Equals(Model.Id))
+    {
+        using (Html.BeginForm("Picture", "Profil", new { id = Model.Id }, FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+            @Html.AntiForgeryToken()
+
+            @Html.Label("Image", new { @class = "control-label col-md-2" })
+            <input type="file" name="upload" />
+            <input type="submit" class="btn left" value="Confirm & Upload" />
+        }
+    }
+</div>
 
 <div class="row">
     <div class="col-md-3">
@@ -29,26 +45,27 @@
     <div class="col-md-5">
         <div class="panel panel-default">
             <div class="panel-heading">About me</div>
-            <div class="panel-body">@Html.DisplayFor(m => m.About)
-            </div>
+            <div class="panel-body">
+                @Html.DisplayFor(m => m.About)
         </div>
     </div>
 </div>
+</div>
 
-    @{
-        string CurrentURL = Request.Url.AbsoluteUri;
+@{
+    string CurrentURL = Request.Url.AbsoluteUri;
+}
+
+@{
+    if (!CurrentURL.Contains("Other"))
+    {
+        <span class="right">
+            <a href="@Url.Action("EditProfile", "Profil", new { id = User.Identity.GetUserId() })">
+                Edit Profile
+            </a>
+        </span>
     }
-    
-        @{
-            if (!CurrentURL.Contains("Other"))
-            {
-                <span class="right">
-                    <a href="@Url.Action("EditProfile", "Profil", new { id = User.Identity.GetUserId() })">
-                        Edit Profile
-                    </a>
-                </span>
-            }
-        }
+}
 
-       
+
 
