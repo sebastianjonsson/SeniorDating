@@ -66,19 +66,21 @@ namespace SeniorDating.Controllers
         }
 
         [HttpPost]
-        public ActionResult EditProfile(ApplicationUser editedUser)
+        public ActionResult EditProfile(ApplicationUser user)
         {
             if (ModelState.IsValid)
             {
                 try
                 {
-                    var user = db.Users.FirstOrDefault(u => u.Id == editedUser.Id);
+                    var user2 = db.Users.FirstOrDefault(u => u.Id == user.Id);
 
-                    user.Name = editedUser.Name;
-                    user.Age = editedUser.Age;
-                    user.About = editedUser.About;
+                    user2.Name = user.Name;
+                    user2.Age = user.Age;
+                    user2.About = user.About;
+                    user2.Hidden = user.Hidden;
+                    
 
-                    db.Entry(user).State = EntityState.Modified;
+                    db.Entry(user2).State = EntityState.Modified;
                     db.SaveChanges();
 
                     return RedirectToAction("Profiles", "Profil", new { id = user.Id });
@@ -90,7 +92,7 @@ namespace SeniorDating.Controllers
                 }
             }
 
-            return View("Profiles", editedUser);
+            return View("Profiles", user);
 
         }
     }

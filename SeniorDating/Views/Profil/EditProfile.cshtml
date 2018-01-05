@@ -1,7 +1,8 @@
 ﻿@model SeniorDating.Models.ApplicationUser
+@using SeniorDating.Models;
 
 @{
-    ViewBag.Title = "EditProfile";
+    ViewBag.Title = "Edit Profile";
 }
 
 <h2>Edit Profile</h2>
@@ -17,25 +18,23 @@
 
         <div class="form-group">
             @Html.LabelFor(model => model.Name, new { @class = "col-md-2 control-label" })
-           
                 @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
-            
         </div>
         <br />
         <div class="form-group">
             @Html.LabelFor(model => model.Age, new { @class = "col-md-2 control-label" })
-            
                 @Html.EditorFor(model => model.Age, new { htmlAttributes = new { @class = "form-control" } })
-            
         </div>
         <br />
         <div class="form-group">
-            @Html.LabelFor(model => model.About, new { @class = "col-md-2 control-label" })
-           
-                @Html.TextAreaFor(model => model.About, new { cols = 100, @rows = 10 })
-          
+            @Html.LabelFor(model => model.About, new { @class = "col-md-2 control-label" }) 
+                @Html.EditorFor(model => model.About, new { htmlAttributes = new { @class = "form-control" } })
+            </div>
+        <br />
+        <div class="form-group">
+            @Html.Label("Hidden on search", new { @class = "col-md-2 control-label" })
+                @Html.EditorFor(model => model.Hidden, new { htmlAttributes = new { @class = "form-control" } })
         </div>
-     
     </div>
     
     <br />
