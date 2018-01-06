@@ -1,0 +1,19 @@
+﻿@model SeniorDating.Controllers.PostIndexViewModel
+@using Microsoft.AspNet.Identity;
+@if (Model.Posts.Count != 0)
+{
+    foreach (var item in Model.Posts)
+    {
+
+        <div class="shoutbox-entry">
+            <span class="shoutbox-entry-author"><b>@Html.ActionLink(item.From.Name, "Profile", "Home", new { item.From.Id }, null)</b> </span>
+            <p class="shoutbox-entry-content">
+                @Html.DisplayFor(modelItem => item.Text)
+            </p>
+        </div>
+
+    }
+}
+else
+{
+    <span class="gray">No Messages Yet!</span><br />}

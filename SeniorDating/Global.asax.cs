@@ -8,6 +8,7 @@ using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
 using Logic;
+using System.Web.Http;
 
 namespace SeniorDating
 {
@@ -15,6 +16,7 @@ namespace SeniorDating
     {
         protected void Application_Start()
         {
+            GlobalConfiguration.Configure(WebApiConfig.Register);
             Database.SetInitializer(new MyInitializer());
 
             AreaRegistration.RegisterAllAreas();

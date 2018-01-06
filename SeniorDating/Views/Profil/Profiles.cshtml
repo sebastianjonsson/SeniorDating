@@ -1,6 +1,8 @@
 ﻿@using Microsoft.AspNet.Identity
 @model SeniorDating.Models.ApplicationUser
 @{
+    /**/
+
     ViewBag.Title = "Profile";
 }
 
@@ -20,7 +22,7 @@
         using (Html.BeginForm("Picture", "Profil", new { id = Model.Id }, FormMethod.Post, new { enctype = "multipart/form-data" }))
         {
 
-            <input type="file" name="upload"/>
+            <input type="file" name="upload" />
             <input type="submit" value="Confirm" />
         }
     }
@@ -45,20 +47,45 @@
             <div class="panel-heading">About me</div>
             <div class="panel-body">
                 @Html.DisplayFor(m => m.About)
+            </div>
         </div>
     </div>
-</div>
 </div>
 
 @if (HttpContext.Current.User.Identity.GetUserId().Equals(Model.Id))
 {
-        <span class="right">
-            <a href="@Url.Action("EditProfile", "Profil", new { id = User.Identity.GetUserId() })">
-                Edit Profile
-            </a>
-        </span>
-    
+    <span class="right">
+        <a href="@Url.Action("EditProfile", "Profil", new { id = User.Identity.GetUserId() })">
+            Edit Profile
+        </a>
+    </span>
+
 }
+
+
+@Html.Partial("../Post1/Index", new SeniorDating.Controllers.PostIndexViewModel(Model.Id))
+
+<script>
+                function addPost() {
+                    var Text = $('#Text').val();
+                    var Sender = '@User.Identity.GetUserId()';
+                    var Reciever = '@Model.Id';
+                    var newPost = {FromUsername: Sender, ToUsername: Reciever, Text: Text};
+                        $.ajax({
+                            type: 'POST',
+                            url: '@Url.Action("Post","Post", new { httproute = "" })',
+                            data: JSON.stringify(newPost),
+                            contentType:'application/json',
+                            datatype: 'json',
+                            success: function (data) {
+                                $('#Text').val('');
+                                location.reload();
+                            }
+                        })
+                    };
+</script>
+<textarea id="Text" rows="3" cols="500" style="width:256px"></textarea><br />
+<input type="button" value="Send Message" onclick="addPost()" />
 
 
 
