@@ -6,15 +6,15 @@
 
 <div class="jumbotron">
     <h1>Senior Dating</h1>
-    <p class="lead">Senior Dating is a datesite for people over 65 years.</p>
+    <p class="lead">@SeniorDating.ResourceLanguages.Resource.Subhead</p>
 
 </div>
 
 <div class="row">
     <div class="col-md-4">
-        <h2>Try it out!</h2>
+        <h2>@SeniorDating.ResourceLanguages.Resource.Tryitout</h2>
         <p>
-            It's very hard for old people to meet new people. This site can help you to find the love of your life.
+            @SeniorDating.ResourceLanguages.Resource.Text
         </p>
 
     </div>
@@ -23,7 +23,7 @@
 @using (Html.BeginForm())
 {
     <p>
-        Search User by Name : @Html.TextBox("SearchString") <input type="submit" value="Search" />
+        @SeniorDating.ResourceLanguages.Resource.SearchUser @Html.TextBox("SearchString") <input type="submit" value="@SeniorDating.ResourceLanguages.Resource.SearchButton" />
     </p>
         }
 
@@ -32,7 +32,7 @@
             <table class="table">
                 <tr>
                     <th>
-                        @Html.DisplayNameFor(model => model.Name)
+                        @SeniorDating.ResourceLanguages.Resource.Name
                     </th>
                 </tr>
 
@@ -41,7 +41,7 @@
                     <tr>
                         <td>
                             @Html.DisplayFor(modelItem => item.Name)
-                            @Html.HiddenFor(modelItem => item.Id) - @Html.ActionLink("Besök", "OtherProfiles", "Profil", new { id = item.Id.ToString() }, null)
+                            @Html.HiddenFor(modelItem => item.Id) - @Html.ActionLink(@SeniorDating.ResourceLanguages.Resource.Visit, "OtherProfiles", "Profil", new { id = item.Id.ToString() }, null)
                         </td>
                     </tr>
                 }
@@ -60,7 +60,7 @@
                 {
                     <tr>
                         <td>
-                            @Html.DisplayFor(modelItem => item.Name) - @Html.ActionLink("Besök", "Register", "Account")
+                            @Html.DisplayFor(modelItem => item.Name) - @Html.ActionLink(@SeniorDating.ResourceLanguages.Resource.Visit, "Register", "Account")
                         </td>
                     </tr>
                 }
