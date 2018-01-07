@@ -6,7 +6,7 @@
     {
 
         <div class="shoutbox-entry">
-            <span class="shoutbox-entry-author"><b>@Html.ActionLink(item.From.Name, "Profile", "Home", new { item.From.Id }, null)</b> </span>
+            <span class="shoutbox-entry-author"><b>@Html.ActionLink(item.From.Name, "OtherProfiles", "Profil", new { item.From.Id }, null)</b> </span>
             <p class="shoutbox-entry-content">
                 @Html.DisplayFor(modelItem => item.Text)
             </p>
