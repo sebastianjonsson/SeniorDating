@@ -7,9 +7,8 @@
 
     <ul class="nav navbar-nav navbar-right">
         <li>@Html.ActionLink(@SeniorDating.ResourceLanguages.Resource.MyProfile, "Profiles", "Profil", new { id = User.Identity.GetUserId() }, null)</li>
-        <li>@Html.ActionLink("Potential Friends", "Index", "Users")</li>
         <li>@Html.ActionLink("Friends", "Friends", "Home", new { id = User.Identity.GetUserId() }, null)</li>
-        <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
+        <li><a href="javascript:document.getElementById('logoutForm').submit()">@SeniorDating.ResourceLanguages.Resource.Logoff</a></li>
     </ul>
     }
 }

@@ -79,6 +79,15 @@ namespace SeniorDating.ResourceLanguages {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Log off.
+        /// </summary>
+        public static string Logoff {
+            get {
+                return ResourceManager.GetString("Logoff", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to My profile.
         /// </summary>
         public static string MyProfile {
