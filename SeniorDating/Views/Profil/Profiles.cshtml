@@ -5,6 +5,12 @@
 
     ViewBag.Title = "Profile";
 }
+<script>
+function Hey()
+{
+    alert('Friend Request sent!');
+}
+        </script>
 
 <div class="container-fluid">
     <h2>@Html.DisplayFor(m => m.Name)</h2>
@@ -21,7 +27,7 @@
 else
 {
 
-        <button class="btn accept right" onclick="location.href='@Url.Action("AddFriendRequest", "Friend", new { friendId = Model.Id })'">Add Friend</button>
+        <button class="btn accept right" onclick="location.href='@Url.Action("AddFriendRequest", "Friend", new { friendId = Model.Id })'; Hey(); ">Add Friend</button>
  
 
 }

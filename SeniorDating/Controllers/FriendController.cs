@@ -106,7 +106,7 @@ namespace SeniorDating.Controllers
                 db.SaveChanges();
 
                 
-                return RedirectToAction("Friends", "Home", new { id = currentUserId });
+                return RedirectToAction("OtherProfiles", "Profil", new { id = friendId });
             }
         }
     }
