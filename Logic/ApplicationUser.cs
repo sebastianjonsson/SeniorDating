@@ -29,6 +29,8 @@ namespace SeniorDating.Models
         public string Content { get; set; }
 
         public virtual ICollection<Post> Posts { get; set; }
+        public virtual ICollection<ApplicationUser> Friends { get; set; }
+        public virtual ICollection<ApplicationUser> FriendRequests { get; set; }
 
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
         {

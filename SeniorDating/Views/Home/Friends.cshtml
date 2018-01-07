@@ -1,0 +1,59 @@
+﻿@model SeniorDating.Models.ApplicationUser
+
+@{
+    ViewBag.Title = "Friends";
+    ViewBag.TitleBar = "Friends";
+    ViewBag.Activate = "friends";
+}
+
+<h2>Requests</h2>
+<div id="pendingRequests">
+    @if (Model.FriendRequests.Count() > 0)
+    {
+        foreach (var request in Model.FriendRequests)
+        {
+            <div class="requestBox">
+                <p>
+                    <a href="@Url.Action("Profile", "Profil", new { id = request.Id })">
+                        @request.Name
+                    </a>
+                </p>
+               
+              
+                <div class="requestInfo">
+                    <button class="btn accept" onclick="location.href='@Url.Action("AcceptFriendRequest", "Friend", new { friendId = request.Id })'">Accept</button>
+                    <button class="btn" onclick="location.href='@Url.Action("DeclineFriendRequest", "Friend", new { friendId = request.Id })'">Decline</button>
+                </div>
+            </div>
+        }
+    }
+    else
+    {
+        <p>No new requests!</p>
+    }
+
+</div>
+
+<div id="friendListFriends">
+    <h2>Friends</h2>
+
+    @if (Model.Friends.Count() != 0)
+    {
+        foreach (var friend in Model.Friends)
+        {
+            <div class="friendInfoFriends">
+             
+                <p>
+                    <a href="@Url.Action("OtherProfiles", "Profil", new { id = friend.Id })">
+                        @friend.Name
+                    </a>
+                </p>
+            </div>
+        }
+    }
+    else
+    {
+        <p>You have no friends!</p>
+    }
+
+</div>

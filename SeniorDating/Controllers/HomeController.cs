@@ -1,6 +1,8 @@
-﻿using System;
+﻿using SeniorDating.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Web;
 using System.Web.Mvc;
 
@@ -42,6 +44,32 @@ namespace SeniorDating.Controllers
         {
             ViewBag.Message = "Your contact page.";
 
+            return View();
+        }
+
+        public ActionResult Friends(string id)
+        {
+            try
+            {
+                if (id == null)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+
+                ApplicationUser user = db.Users.FirstOrDefault(u => u.Id == id);
+
+
+                if (user == null)
+                {
+                    return HttpNotFound();
+                }
+
+                return View(user);
+            }
+            catch
+            {
+                RedirectToAction("Index", "Home");
+            }
             return View();
         }
     }

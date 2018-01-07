@@ -200,6 +200,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
+    <Compile Include="Controllers\FriendController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\Post1Controller.cs" />
@@ -285,9 +286,11 @@
     <Content Include="Views\Profil\Profiles.cshtml" />
     <Content Include="Views\Profil\EditProfile.cshtml" />
     <Content Include="Views\Post1\Index.cshtml" />
+    <Content Include="Views\Home\Friends.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Friend\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
