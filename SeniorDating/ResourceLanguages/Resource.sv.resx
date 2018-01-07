@@ -123,9 +123,6 @@
   <data name="Login" xml:space="preserve">
     <value>Logga in</value>
   </data>
-  <data name="LogOff" xml:space="preserve">
-    <value>Logga ut</value>
-  </data>
   <data name="MyProfile" xml:space="preserve">
     <value>Min profil</value>
   </data>
