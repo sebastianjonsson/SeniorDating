@@ -26,10 +26,7 @@ function Hey()
 }
 else
 {
-
-        <button class="btn accept right" onclick="location.href='@Url.Action("AddRequest", "Friend", new { id = Model.Id })'; Hey(); ">Add Friend</button>
- 
-
+        <button onclick="location.href='@Url.Action("AddFriendRequest", "Friend", new { friendId = Model.Id })'; Hey(); ">Add Friend</button>
 }
 
 
@@ -79,33 +76,35 @@ else
         <div class="panel panel-default">
              <div class="panel-heading">Messages:</div>
                 <div class="panel-body">
-                    @Html.Partial("../Post1/Index", new SeniorDating.Controllers.PostIndexViewModel(Model.Id))
+
+
+                @Html.Partial("../Post1/Index", new SeniorDating.Controllers.PostIndexViewModel(Model.Id))
                     </div>
             </div>
     </div>
 </div>
 
 <script>
-                function newPost() {
-                    var text = $('#message').val();
-                    var from = '@User.Identity.GetUserId()';
-                    var to = '@Model.Id';
-                    var Post = {From: from, To: to, Text: text};
+                function addPost() {
+                    var Text = $('#Text').val();
+                    var Sender = '@User.Identity.GetUserId()';
+                    var Reciever = '@Model.Id';
+                    var newPost = {FromUsername: Sender, ToUsername: Reciever, Text: Text};
                         $.ajax({
                             type: 'POST',
                             url: '@Url.Action("Post","Post", new { httproute = "" })',
-                            data: JSON.stringify(Post),
+                            data: JSON.stringify(newPost),
                             contentType:'application/json',
                             datatype: 'json',
                             success: function (data) {
-                                $('#message').val('');
+                                $('#Text').val('');
                                 location.reload();
                             }
                         })
                     };
 </script>
-<textarea id="message" rows="5" cols="500" style="width:256px"></textarea><br />
-<input type="button" value="Send Message" onclick="newPost()" />
+<textarea id="Text" rows="3" style="width:400px"></textarea><br />
+<input type="button" value="Send Message" onclick="addPost()" />
 
 
 
