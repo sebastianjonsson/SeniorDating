@@ -29,11 +29,11 @@ namespace SeniorDating.Controllers
 
                 return View(model);
             }
-            catch (Exception e)
+            catch
             {
-                System.Diagnostics.Debug.WriteLine(e.Message);
-                throw;
+                RedirectToAction("Index", "Home");
             }
+            return View();
         }
 
         public ActionResult Image(string id)
@@ -49,23 +49,31 @@ namespace SeniorDating.Controllers
                 }
                 return View();
             }
-            catch (Exception e)
+            catch
             {
-                System.Diagnostics.Debug.WriteLine(e.Message);
-                throw;
+                RedirectToAction("Index", "Home");
             }
+            return View();
         }
 
         public ActionResult OtherProfiles(ApplicationUser model, string id)
         {
-            var user = repository.GetUserById(id);
-            model.Age = user.Age;
-            model.Name = user.Name;
-            model.Gender = user.Gender;
-            model.LookingFor = user.LookingFor;
-            model.About = user.About;
+            try
+            {
+                var user = repository.GetUserById(id);
+                model.Age = user.Age;
+                model.Name = user.Name;
+                model.Gender = user.Gender;
+                model.LookingFor = user.LookingFor;
+                model.About = user.About;
 
-            return View("Profiles", model);
+                return View("Profiles", model);
+            }
+            catch
+            {
+                RedirectToAction("Index", "Home");
+            }
+            return View();
         }
 
         public ActionResult EditProfile(string id)
@@ -150,7 +158,6 @@ namespace SeniorDating.Controllers
             }
             catch
             {
-
                 RedirectToAction("Profiles", "Profil");
             }
              return View();

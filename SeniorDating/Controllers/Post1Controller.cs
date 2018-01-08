@@ -19,11 +19,11 @@ namespace SeniorDating.Controllers
                 var post = db.Posts.Include(x => x.From).Where(i => i.To.Id == id).ToList();
                 return View(new PostIndexViewModel { Id = id, Posts = post });
             }
-            catch (Exception e)
+            catch
             {
-                System.Diagnostics.Debug.WriteLine(e.Message);
-                throw;
+                RedirectToAction("Index", "Home");
             }
+            return View();
 
         }
         

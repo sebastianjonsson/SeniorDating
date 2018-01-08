@@ -10,7 +10,7 @@ namespace SeniorDating.Controllers
 {
     public class PostController : ApiController
     {
-        [HttpPost, ActionName("newPost")]
+    [HttpPost, ActionName("newPost")]
         public void newPost([FromBody] PostViewModel model)
         {
             try

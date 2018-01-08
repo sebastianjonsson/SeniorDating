@@ -19,11 +19,11 @@ namespace SeniorDating.Controllers
                 users = users.OrderBy(emp => rnd.Next()).Take(10).ToList();
                 return View(users);
             }
-            catch (Exception e)
+            catch
             {
-                System.Diagnostics.Debug.WriteLine(e.Message);
-                throw;
+                RedirectToAction("Index", "Home");
             }
+            return View();
         }
         [HttpPost]
         public ActionResult Index(string searchString)
@@ -41,11 +41,11 @@ namespace SeniorDating.Controllers
 
                 return View("Index", users);
             }
-            catch (Exception e)
+            catch
             {
-                System.Diagnostics.Debug.WriteLine(e.Message);
-                throw;
+                RedirectToAction("Index", "Home");
             }
+            return View();
         }
          
     }

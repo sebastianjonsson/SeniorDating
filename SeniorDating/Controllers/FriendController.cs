@@ -33,11 +33,11 @@ namespace SeniorDating.Controllers
                     return RedirectToAction("Friends", "Friend", new { id = userId });
             }
 
-            catch (Exception e)
+            catch
             {
-                System.Diagnostics.Debug.WriteLine(e.Message);
-                throw;
+                RedirectToAction("Index", "Home");
             }
+            return View();
         }
 
         public ActionResult DeclineRequest(string id)
@@ -54,11 +54,11 @@ namespace SeniorDating.Controllers
                     return RedirectToAction("Friends", "Friend", new { id = userId });
             }
 
-            catch (Exception e)
+            catch
             {
-                System.Diagnostics.Debug.WriteLine(e.Message);
-                throw;
+                RedirectToAction("Index", "Home");
             }
+            return View();
         }
 
         public ActionResult AddRequest(string id)
