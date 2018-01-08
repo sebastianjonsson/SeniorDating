@@ -35,7 +35,7 @@ else
 <div>
 
     <img height="200" width="200" src="@Url.Action("Image", "Profil", new { id = Model.Id })" />
-
+    <br />
     @if (HttpContext.Current.User.Identity.GetUserId().Equals(Model.Id))
     {
         using (Html.BeginForm("Picture", "Profil", new { id = Model.Id }, FormMethod.Post, new { enctype = "multipart/form-data" }))
