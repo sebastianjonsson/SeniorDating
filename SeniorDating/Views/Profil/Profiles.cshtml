@@ -26,10 +26,7 @@ function Hey()
 }
 else
 {
-
-        <button class="btn accept right" onclick="location.href='@Url.Action("AddFriendRequest", "Friend", new { friendId = Model.Id })'; Hey(); ">Add Friend</button>
- 
-
+        <button onclick="location.href='@Url.Action("AddFriendRequest", "Friend", new { friendId = Model.Id })'; Hey(); ">Add Friend</button>
 }
 
 
@@ -106,7 +103,7 @@ else
                         })
                     };
 </script>
-<textarea id="Text" rows="5" cols="500" style="width:256px"></textarea><br />
+<textarea id="Text" rows="3" style="width:400px"></textarea><br />
 <input type="button" value="Send Message" onclick="addPost()" />
 
 
