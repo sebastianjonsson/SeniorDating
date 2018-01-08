@@ -16,7 +16,7 @@ namespace SeniorDating.Controllers
             {
                 var users = db.Users.ToList();
                 Random rnd = new Random();
-                users = users.OrderBy(emp => rnd.Next()).Take(10).ToList();
+                users = users.OrderBy(emp => rnd.Next()).Take(5).ToList();
                 return View(users);
             }
             catch
