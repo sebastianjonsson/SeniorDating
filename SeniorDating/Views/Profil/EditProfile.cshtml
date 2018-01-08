@@ -19,17 +19,17 @@
 
         <div class="form-group">
             @Html.LabelFor(model => model.Name, new { @class = "col-md-2 control-label" })
-                @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control", pattern = ".{3,}", title = "3 characters minimum", required = "required" } })
         </div>
         <br />
         <div class="form-group">
             @Html.LabelFor(model => model.Age, new { @class = "col-md-2 control-label" })
-                @Html.EditorFor(model => model.Age, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.Age, new { htmlAttributes = new { @class = "form-control", min="65", max="150", required = "required" } })
         </div>
         <br />
         <div class="form-group">
             @Html.LabelFor(model => model.About, new { @class = "col-md-2 control-label" }) 
-                @Html.EditorFor(model => model.About, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.About, new { htmlAttributes = new { @class = "form-control", pattern = ".{20,100}", title = "20 to 100 characters", required = "required" } })
             </div>
         <br />
         <div class="form-group">
