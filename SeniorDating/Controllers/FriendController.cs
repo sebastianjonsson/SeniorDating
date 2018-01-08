@@ -11,7 +11,7 @@ namespace SeniorDating.Controllers
 {
     public class FriendController : BaseController
     {
-        // GET: Friend
+        
         public ActionResult Index()
         {
             return View();
