@@ -18,8 +18,9 @@ namespace SeniorDating
     {
         protected void Application_Start()
         {
-            GlobalConfiguration.Configure(WebApiConfig.Register);
             Database.SetInitializer(new MyInitializer());
+            GlobalConfiguration.Configure(WebApiConfig.Register);
+            
 
             AreaRegistration.RegisterAllAreas();
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
