@@ -5,6 +5,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using SeniorDating.Models;
+using System.Net;
 
 namespace SeniorDating.Controllers
 {
@@ -29,7 +30,7 @@ namespace SeniorDating.Controllers
                     user.FriendRequests.Remove(friend);
 
                     db.SaveChanges();
-                    return RedirectToAction("Friends", "Home", new { id = userId });
+                    return RedirectToAction("Friends", "Friend", new { id = userId });
             }
 
             catch (Exception e)
@@ -50,7 +51,7 @@ namespace SeniorDating.Controllers
                     user.FriendRequests.Remove(friend);
                     db.SaveChanges();
 
-                    return RedirectToAction("Friends", "Home", new { id = userId });
+                    return RedirectToAction("Friends", "Friend", new { id = userId });
             }
 
             catch (Exception e)
@@ -71,6 +72,30 @@ namespace SeniorDating.Controllers
             db.SaveChanges();
 
             return RedirectToAction("OtherProfiles", "Profil", new { id = id });
+        }
+
+        public ActionResult Friends(string id)
+        {
+            try
+            {
+                if (id == null)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+
+                ApplicationUser user = db.Users.FirstOrDefault(u => u.Id == id);
+
+                if (user == null)
+                {
+                    return HttpNotFound();
+                }
+                return View(user);
+            }
+            catch
+            {
+                RedirectToAction("Index", "Home");
+            }
+            return View();
         }
     }
 }

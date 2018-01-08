@@ -12,63 +12,41 @@ namespace SeniorDating.Controllers
     {
         public ActionResult Index()
         {
-
-            var users = db.Users.ToList();
-            Random rnd = new Random();
-            users = users.OrderBy(emp => rnd.Next()).Take(10).ToList();
-            return View(users);
+            try
+            {
+                var users = db.Users.ToList();
+                Random rnd = new Random();
+                users = users.OrderBy(emp => rnd.Next()).Take(10).ToList();
+                return View(users);
+            }
+            catch (Exception e)
+            {
+                System.Diagnostics.Debug.WriteLine(e.Message);
+                throw;
+            }
         }
         [HttpPost]
         public ActionResult Index(string searchString)
         {
-            var users = from m in db.Users
-                        where m.Hidden == false
-                         select m;
-
-            if (!String.IsNullOrEmpty(searchString))
-            {
-                users = users.Where(s => s.Name.Contains(searchString));
-            }
-
-            return View("Index", users);
-        }
-
-        public ActionResult About()
-        {
-            ViewBag.Message = "Your application description page.";
-
-            return View();
-        }
-
-        public ActionResult Contact()
-        {
-            ViewBag.Message = "Your contact page.";
-
-            return View();
-        }
-
-        public ActionResult Friends(string id)
-        {
             try
             {
-                if (id == null)
+                var users = from m in db.Users
+                            where m.Hidden == false
+                            select m;
+
+                if (!String.IsNullOrEmpty(searchString))
                 {
-                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                    users = users.Where(s => s.Name.Contains(searchString));
                 }
 
-                ApplicationUser user = db.Users.FirstOrDefault(u => u.Id == id);
-
-                if (user == null)
-                {
-                    return HttpNotFound();
-                }
-                return View(user);
+                return View("Index", users);
             }
-            catch
+            catch (Exception e)
             {
-                RedirectToAction("Index", "Home");
+                System.Diagnostics.Debug.WriteLine(e.Message);
+                throw;
             }
-            return View();
         }
+         
     }
 }

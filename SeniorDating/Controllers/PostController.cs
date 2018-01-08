@@ -10,8 +10,6 @@ namespace SeniorDating.Controllers
 {
     public class PostController : ApiController
     {
-
-        // POST: api/Post
         [HttpPost, ActionName("newPost")]
         public void newPost([FromBody] PostViewModel model)
         {

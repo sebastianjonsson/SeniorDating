@@ -18,27 +18,42 @@ namespace SeniorDating.Controllers
         
         public ActionResult Profiles(ApplicationUser model)
         {
-            var user = repository.GetUser(User.Identity.Name);
-            model.Age = user.Age;
-            model.Name = user.Name;
-            model.Gender = user.Gender;
-            model.LookingFor = user.LookingFor;
-            model.About = user.About;
-            
-            return View(model);
+            try
+            {
+                var user = repository.GetUser(User.Identity.Name);
+                model.Age = user.Age;
+                model.Name = user.Name;
+                model.Gender = user.Gender;
+                model.LookingFor = user.LookingFor;
+                model.About = user.About;
+
+                return View(model);
+            }
+            catch (Exception e)
+            {
+                System.Diagnostics.Debug.WriteLine(e.Message);
+                throw;
+            }
         }
 
-        public ActionResult Image(string Id)
+        public ActionResult Image(string id)
         {
-
-            var user = db.Users.Single(x => x.Id == Id);
-
-            if (user.Content != null)
+            try
             {
-                var image = db.Users.Single(x => x.Id == Id);
-                return File(image.Picture, image.Content);
+                var user = db.Users.Single(x => x.Id == id);
+
+                if (user.Content != null)
+                {
+                    var image = db.Users.Single(x => x.Id == id);
+                    return File(image.Picture, image.Content);
+                }
+                return View();
             }
-            return View();
+            catch (Exception e)
+            {
+                System.Diagnostics.Debug.WriteLine(e.Message);
+                throw;
+            }
         }
 
         public ActionResult OtherProfiles(ApplicationUser model, string id)

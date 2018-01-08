@@ -15,8 +15,8 @@
                     </a>
                 </h1>
                 <div>
-                    <button onclick="location.href='@Url.Action("AcceptFriendRequest", "Friend", new { friendId = request.Id })'">Accept</button>
-                    <button onclick="location.href='@Url.Action("DeclineFriendRequest", "Friend", new { friendId = request.Id })'">Ignore</button>
+                    <button onclick="location.href='@Url.Action("AcceptRequest", "Friend", new { id = request.Id })'">Accept</button>
+                    <button onclick="location.href='@Url.Action("DeclineRequest", "Friend", new { id = request.Id })'">Ignore</button>
                 </div>
             </div>
         }
