@@ -33,19 +33,22 @@ else
 <br>
 
 <div>
-
+    
     <img height="200" width="200" src="@Url.Action("Image", "Profil", new { id = Model.Id })" />
-
+    
     @if (HttpContext.Current.User.Identity.GetUserId().Equals(Model.Id))
     {
         using (Html.BeginForm("Picture", "Profil", new { id = Model.Id }, FormMethod.Post, new { enctype = "multipart/form-data" }))
         {
-
+            <br />
             <input type="file" name="upload" />
+            <br />
             <input type="submit" value="Upload Picture" />
         }
     }
 </div>
+
+<br>
 
 <div class="row">
     <div class="col-md-3">
@@ -85,25 +88,32 @@ else
 </div>
 
 <script>
-                function newPost() {
-                    var text = $('#message').val();
-                    var from = '@User.Identity.GetUserId()';
-                    var to = '@Model.Id';
-                    var post = {From: from, To: to, Text: text};
-                        $.ajax({
-                            type: 'POST',
-                            url: '@Url.Action("Post","Post", new { httproute = "" })',
-                            data: JSON.stringify(post),
-                            contentType:'application/json',
-                            datatype: 'json',
-                            success: function (data) {
-                                $('#message').val('');
-                                location.reload();
-                            }
-                        })
-                    };
+    function newPost() {
+        var txt = $('#message').val().length;
+        if (txt > 0) {
+            var text = $('#message').val();
+            var from = '@User.Identity.GetUserId()';
+            var to = '@Model.Id';
+            var post = { From: from, To: to, Text: text };
+            $.ajax({
+                type: 'POST',
+                url: '@Url.Action("Post","Post", new { httproute = "" })',
+                data: JSON.stringify(post),
+                contentType: 'application/json',
+                datatype: 'json',
+                success: function (data) {
+                    $('#message').val('');
+                    location.reload();
+                }
+            })
+            }
+                        else {
+                            alert("You need to write a cute message!");
+                        }
+                        }
+                    ;
 </script>
-<textarea id="message" rows="3" style="width:400px"></textarea><br />
+<textarea maxlength="50" id="message" rows="3" style="width:400px"></textarea><br />
 <input type="button" value="Send Message" onclick="newPost()" />
 
 
