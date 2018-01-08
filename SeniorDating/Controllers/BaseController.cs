@@ -16,17 +16,17 @@ namespace SeniorDating.Controllers
         {
             if (User != null)
             {
-                var dbcontext = new ApplicationDbContext();
+                var db = new ApplicationDbContext();
                 var name = User.Identity.Name;
 
                 if (!string.IsNullOrEmpty(name))
                 {
-                    var user = dbcontext.Users.SingleOrDefault(x => x.UserName == name);
+                    var user = db.Users.SingleOrDefault(x => x.UserName == name);
 
                     if (user != null)
                     {
-                        var friendRequests = user.FriendRequests;   
-                        ViewData.Add("friendRequests", friendRequests);
+                        var requests = user.FriendRequests;   
+                        ViewData.Add("requests", requests);
                     }
                 }
             }

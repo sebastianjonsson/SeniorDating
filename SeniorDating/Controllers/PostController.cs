@@ -12,20 +12,27 @@ namespace SeniorDating.Controllers
     {
 
         // POST: api/Post
-        [HttpPost, ActionName("addPost")]
-        public void addPost([FromBody] PostViewModel model)
+        [HttpPost, ActionName("newPost")]
+        public void newPost([FromBody] PostViewModel model)
         {
-            using (var db = new ApplicationDbContext())
+            try
             {
-                db.Posts.Add(new Post()
+                using (var db = new ApplicationDbContext())
                 {
-                    Text = model.Text,
-                    From = db.Users.Single(x => x.Id == model.FromUsername),
-                    To = db.Users.Single(x => x.Id == model.ToUsername),
-                    
-                });
+                    db.Posts.Add(new Post()
+                    {
+                        Text = model.Text,
+                        From = db.Users.Single(x => x.Id == model.From),
+                        To = db.Users.Single(x => x.Id == model.To),
 
-                db.SaveChanges();
+                    });
+
+                    db.SaveChanges();
+                }
+            }
+            catch (Exception e)
+            {
+                System.Diagnostics.Debug.WriteLine(e.Message);
             }
         }
 

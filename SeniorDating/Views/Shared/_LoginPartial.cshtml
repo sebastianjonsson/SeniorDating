@@ -10,7 +10,7 @@
 
         
                        
-      <li id="friends"><a href="@Url.Action("Friends", "Home", new { id = User.Identity.GetUserId() })"> @SeniorDating.ResourceLanguages.Resource.Friends [@ViewBag.friendRequests.Count]</a></li>
+      <li id="friends"><a href="@Url.Action("Friends", "Home", new { id = User.Identity.GetUserId() })"> @SeniorDating.ResourceLanguages.Resource.Friends [@ViewBag.requests.Count]</a></li>
             
 
         <li><a href="javascript:document.getElementById('logoutForm').submit()">@SeniorDating.ResourceLanguages.Resource.Logoff</a></li>

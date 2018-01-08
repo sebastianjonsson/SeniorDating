@@ -58,12 +58,10 @@ namespace SeniorDating.Controllers
 
                 ApplicationUser user = db.Users.FirstOrDefault(u => u.Id == id);
 
-
                 if (user == null)
                 {
                     return HttpNotFound();
                 }
-
                 return View(user);
             }
             catch

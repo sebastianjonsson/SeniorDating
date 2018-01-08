@@ -8,7 +8,7 @@ using SeniorDating.Models;
 
 namespace SeniorDating.Controllers
 {
-    public class FriendController : Controller
+    public class FriendController : BaseController
     {
         // GET: Friend
         public ActionResult Index()
@@ -16,98 +16,61 @@ namespace SeniorDating.Controllers
             return View();
         }
 
-        public ActionResult AcceptFriendRequest(string friendId)
+        public ActionResult AcceptRequest(string id)
         {
             try
             {
-                using (var db = new ApplicationDbContext())
-                {
-                    var currentUserId = User.Identity.GetUserId();
-                    var currentUser = db.Users.SingleOrDefault(x => x.Id == currentUserId);
-                    var newFriend = db.Users.SingleOrDefault(x => x.Id == friendId);
-                    currentUser.Friends.Add(newFriend);
-                    newFriend.Friends.Add(currentUser);
+                var userId = User.Identity.GetUserId();
+                    var user = db.Users.SingleOrDefault(x => x.Id == userId);
+                    var friend = db.Users.SingleOrDefault(x => x.Id == id);
+                    user.Friends.Add(friend);
+                    friend.Friends.Add(user);
 
-                    currentUser.FriendRequests.Remove(newFriend);
+                    user.FriendRequests.Remove(friend);
 
                     db.SaveChanges();
-                    return RedirectToAction("Friends", "Home", new { id = currentUserId });
-                }
-
+                    return RedirectToAction("Friends", "Home", new { id = userId });
             }
+
             catch (Exception e)
             {
-                System.Diagnostics.Debug.WriteLine("Hey ho");
                 System.Diagnostics.Debug.WriteLine(e.Message);
                 throw;
             }
         }
 
-        public ActionResult RemoveFriend(string friendID)
+        public ActionResult DeclineRequest(string id)
         {
             try
             {
-                using (var db = new ApplicationDbContext())
-                {
-                    var currentUserId = User.Identity.GetUserId();
-                    var currentUser = db.Users.SingleOrDefault(x => x.Id == currentUserId);
-                    var removedFriend = db.Users.SingleOrDefault(x => x.Id == friendID);
+                var userId = User.Identity.GetUserId();
+                    var user = db.Users.SingleOrDefault(x => x.Id == userId);
 
-                    currentUser.Friends.Remove(removedFriend);
-                    removedFriend.Friends.Remove(currentUser);
-
+                    var friend = db.Users.SingleOrDefault(x => x.Id == id);
+                    user.FriendRequests.Remove(friend);
                     db.SaveChanges();
-                    return RedirectToAction("Friends", "Home", new { id = currentUserId });
-                }
+
+                    return RedirectToAction("Friends", "Home", new { id = userId });
             }
+
             catch (Exception e)
             {
-                System.Diagnostics.Debug.WriteLine("Hey ho");
                 System.Diagnostics.Debug.WriteLine(e.Message);
                 throw;
             }
         }
 
-        public ActionResult DeclineFriendRequest(string friendId)
+        public ActionResult AddRequest(string id)
         {
-            try
-            {
-                using (var db = new ApplicationDbContext())
-                {
-                    var currentUserId = User.Identity.GetUserId();
-                    var currentUser = db.Users.SingleOrDefault(x => x.Id == currentUserId);
+            var friend = db.Users.SingleOrDefault(x => x.Id == id);
+            var userId = User.Identity.GetUserId();
+            var user = db.Users.SingleOrDefault(x => x.Id == userId);
 
-                    var failedFriend = db.Users.SingleOrDefault(x => x.Id == friendId);
-                    currentUser.FriendRequests.Remove(failedFriend);
-                    db.SaveChanges();
+            friend.FriendRequests.Add(user);
 
-                    return RedirectToAction("Friends", "Home", new { id = currentUserId });
-                }
-            }
-            catch (Exception e)
-            {
-                System.Diagnostics.Debug.WriteLine("Hey ho");
-                System.Diagnostics.Debug.WriteLine(e.Message);
-                throw;
-            }
-        }
+            db.SaveChanges();
 
-        public ActionResult AddFriendRequest(string friendId)
-        {
-            using (var db = new ApplicationDbContext())
-            {
-                var newFriend = db.Users.SingleOrDefault(x => x.Id == friendId);
-
-                var currentUserId = User.Identity.GetUserId();
-                var currentUser = db.Users.SingleOrDefault(x => x.Id == currentUserId);
-
-                newFriend.FriendRequests.Add(currentUser);
-
-                db.SaveChanges();
-
-                
-                return RedirectToAction("OtherProfiles", "Profil", new { id = friendId });
-            }
+            return RedirectToAction("OtherProfiles", "Profil", new { id = id });
         }
     }
 }

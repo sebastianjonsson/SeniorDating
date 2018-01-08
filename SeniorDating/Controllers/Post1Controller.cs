@@ -9,15 +9,20 @@ using System.Data.Entity;
 namespace SeniorDating.Controllers
 {
     
-    public class PostsController : Controller
+    public class PostsController : BaseController
     {
         // GET: Posts
-        public ActionResult Index(string profileId)
+        public ActionResult Index(string id)
         {
-            using (var db = new ApplicationDbContext())
+            try
             {
-                var posts = db.Posts.Include(x => x.From).Where(i => i.To.Id == profileId).ToList();
-                return View(new PostIndexViewModel { Id = profileId, Posts = posts });
+                var post = db.Posts.Include(x => x.From).Where(i => i.To.Id == id).ToList();
+                return View(new PostIndexViewModel { Id = id, Posts = post });
+            }
+            catch (Exception e)
+            {
+                System.Diagnostics.Debug.WriteLine(e.Message);
+                throw;
             }
 
         }
@@ -36,14 +41,6 @@ namespace SeniorDating.Controllers
             using (var db = new ApplicationDbContext())
             {
                 this.Posts = db.Posts.Include(x => x.From).Where(i => i.To.Id == Id).ToList();
-                try
-                {
-
-                }
-                catch
-                {
-
-                }
                 this.Id = Id;
             }
 
