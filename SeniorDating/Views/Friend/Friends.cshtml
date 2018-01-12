@@ -6,34 +6,48 @@
 
 <h2>Friend Requests:</h2>
 <div>
-    @foreach (var request in Model.FriendRequests)
+    @if (Model.FriendRequests.Count > 0)
+    {
+        foreach (var request in Model.FriendRequests)
         {
             <div>
-                <h1>
+                <h2>
                     <a href="@Url.Action("OtherProfiles", "Profil", new { id = request.Id })">
                         @request.Name
                     </a>
-                </h1>
+                </h2>
                 <div>
                     <button onclick="location.href='@Url.Action("AcceptRequest", "Friend", new { id = request.Id })'">Accept</button>
                     <button onclick="location.href='@Url.Action("DeclineRequest", "Friend", new { id = request.Id })'">Ignore</button>
                 </div>
             </div>
         }
-    
+    }
+    else
+    {
+        <h3> No friendrequests..</h3>
+    }
+
 </div>
 
 <div>
     <h2>Friends:</h2>
-         @foreach (var friend in Model.Friends)
+    @if (Model.Friends.Count > 0)
+    {
+        foreach (var friend in Model.Friends)
         {
             <div>
              
-                <h1>
+                <h2>
                     <a href="@Url.Action("OtherProfiles", "Profil", new { id = friend.Id })">
                         @friend.Name
                     </a>
-                </h1>
+                </h2>
             </div>
         }
+    }
+    else
+    {
+        <h3> No friends :( </h3>
+    }
 </div>
