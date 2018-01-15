@@ -17,14 +17,11 @@ function Hey()
 </div>
 @if (HttpContext.Current.User.Identity.GetUserId().Equals(Model.Id))
 {
-    <span class="right">
-        <a href="@Url.Action("EditProfile", "Profil", new { id = User.Identity.GetUserId() })">
+    <a href="@Url.Action("EditProfile", "Profil", new { id = User.Identity.GetUserId() })">
             Edit Profile
             <br />
         </a>
-    </span>
-
-}
+ }
 else
 {
         <button onclick="location.href='@Url.Action("AddRequest", "Friend", new { id = Model.Id })'; Hey(); ">Add Friend</button>
@@ -33,15 +30,17 @@ else
 <br />
 
 <div>
-
-    <img height="200" width="200" src="@Url.Action("Image", "Profil", new { id = Model.Id })" />
+    
+        <img height="200" width="200" src="@Url.Action("Image", new { id = Model.Id })" />
+    
     <br />
+
     @if (HttpContext.Current.User.Identity.GetUserId().Equals(Model.Id))
     {
         using (Html.BeginForm("Picture", "Profil", new { id = Model.Id }, FormMethod.Post, new { enctype = "multipart/form-data" }))
         {
             <br />
-            <input type="file" name="upload" accept="image/*" />
+            <input type="file" name="upload" accept=".png,.jpg,.jpeg,.gif,.bmp" />
             <br />
             <input type="submit" value="Upload Picture" />
         }
