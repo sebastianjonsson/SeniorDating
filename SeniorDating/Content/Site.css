@@ -22,3 +22,22 @@ select,
 textarea {
     max-width: 280px;
 }
+
+.homeImage {
+    background-image: url(https://www.tforg.com/wp-content/uploads/2015/02/senior-citizens.jpg);
+    background-size: cover;
+    background-position: 0px 450px;
+    height: 400px;
+    opacity: 0.9;
+    text-align: left;
+}
+
+#kolumn1 {
+    float: left;
+    width: 450px;
+}
+
+#kolumn2 {
+    float: left;
+    width: 500px;
+}
