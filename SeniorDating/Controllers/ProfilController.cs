@@ -38,8 +38,15 @@ namespace SeniorDating.Controllers
 
         public ActionResult Image(string id)
         {
-            var image = db.Users.Single(x => x.Id == id);
-            return File(image.Picture, image.Content);
+            try
+            {
+                var image = db.Users.Single(x => x.Id == id);
+                return File(image.Picture, image.Content);
+            }
+            catch
+            {
+                return View();
+            }
         }
 
         public ActionResult OtherProfiles(ApplicationUser model, string id)
