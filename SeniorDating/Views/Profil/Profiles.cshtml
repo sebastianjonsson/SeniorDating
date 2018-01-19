@@ -36,8 +36,7 @@ else
 <br />
 
 <div>
-    
-        <img height="200" width="200" src="@Url.Action("Image", new { id = Model.Id })" onError="this.onerror=null;this.src='http://www.tabyglantan.se/files/user/grafik/profil.png'" />
+    <img height="200" width="200" src="@Url.Action("Image", new { id = Model.Id })" onError="this.onerror=null;this.src='http://www.tabyglantan.se/files/user/grafik/profil.png'" />
     
     <br />
 
@@ -55,44 +54,50 @@ else
 
 <br />
 
-<div class="row">
-    <div class="col-md-3">
-        <div class="panel panel-default">
-            <div class="panel-heading">Age</div>
-            <div class="panel-body">@Html.DisplayFor(m => m.Age)</div>
-            <div class="panel-heading">Gender</div>
-            <div class="panel-body">@Html.DisplayFor(m => m.Gender)</div>
-            <div class="panel-heading">Looking for</div>
-            <div class="panel-body">@Html.DisplayFor(m => m.LookingFor)</div>
-        </div>
-    </div>
-</div>
 
-<div class="row">
-    <div class="col-md-8">
-        <div class="panel panel-default">
-            <div class="panel-heading">About me</div>
-            <div class="panel-body">
-                @Html.DisplayFor(m => m.About)
+    <div class="row">
+        <div class="col-md-3">
+            <div class="panel panel-default">
+                <div class="panel-heading">Age: </div>
+                <div class="panel-body">@Html.DisplayFor(m => m.Age)</div>
+                <div class="panel-heading">Gender: </div>
+                <div class="panel-body">@Html.DisplayFor(m => m.Gender)</div>
+                <div class="panel-heading">Looking for: </div>
+                <div class="panel-body">@Html.DisplayFor(m => m.LookingFor)</div>
             </div>
         </div>
     </div>
-</div>
 
-<div class="row">
-    <div class="col-md-12">
-        <div class="panel panel-default">
-             <div class="panel-heading">Messages:</div>
+    <div class="row">
+        <div class="col-md-8">
+            <div class="panel panel-default">
+                <div class="panel-heading">About me: </div>
                 <div class="panel-body">
-
-
-                @Html.Partial("../Post1/Index", new SeniorDating.Controllers.PostIndexViewModel(Model.Id))
-                    </div>
+                    @Html.DisplayFor(m => m.About)
+                </div>
             </div>
+        </div>
     </div>
-</div>
+    
 
-<script>
+    
+        <div class="row">
+            <div class="col-md-12">
+                <div class="panel panel-default">
+                    <div class="panel-heading">Messages:</div>
+                    <div class="panel-body">
+
+
+                        @Html.Partial("../Post1/Index", new SeniorDating.Controllers.PostIndexViewModel(Model.Id))
+                    </div>
+                </div>
+            </div>
+        </div>
+        <textarea maxlength="50" id="message" rows="3" style="width:400px"></textarea><br />
+        <input type="button" value="Send Message" onclick="newPost()" />
+   
+
+    <script>
     function newPost() {
         var txt = $('#message').val().length;
         if (txt > 0) {
@@ -117,9 +122,8 @@ else
                         }
                         }
                     ;
-</script>
-<textarea maxlength="50" id="message" rows="3" style="width:400px"></textarea><br />
-<input type="button" value="Send Message" onclick="newPost()" />
+    </script>
+
 
 
 
