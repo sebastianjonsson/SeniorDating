@@ -35,71 +35,67 @@ else
 
 <br />
 
-<div class="container">
-    <div class="row">
-        <div class="col-md-4">
+<div id="kolumn1">
+    <div class="container">
+        <div class="row">
             <img height="200" width="200" src="@Url.Action("Image", new { id = Model.Id })" onError="this.onerror=null;this.src='http://www.tabyglantan.se/files/user/grafik/profil.png'" />
 
-            <br />
-
-            @if (HttpContext.Current.User.Identity.GetUserId().Equals(Model.Id))
-        {
-            using (Html.BeginForm("Picture", "Profil", new { id = Model.Id }, FormMethod.Post, new { enctype = "multipart/form-data" }))
-            {
                 <br />
-                <input type="file" name="upload" accept=".png,.jpg,.jpeg,.gif,.bmp" />
-                <br />
-                <input type="submit" value="Upload Picture" />
-        }
-    }
+
+                @if (HttpContext.Current.User.Identity.GetUserId().Equals(Model.Id))
+                {
+                    using (Html.BeginForm("Picture", "Profil", new { id = Model.Id }, FormMethod.Post, new { enctype = "multipart/form-data" }))
+                    {
+                        <br />
+                        <input type="file" name="upload" accept=".png,.jpg,.jpeg,.gif,.bmp" />
+                        <br />
+                        <input type="submit" value="Upload Picture" />
+                    }
+                }
+            
         </div>
-
-        <div class="container">
-            <div class="col-md-8 float right">
-                <div class="panel panel-default">
-                    <div class="panel-heading">Messages:</div>
-                    <div class="panel-body">
-                        @Html.Partial("../Post1/Index", new SeniorDating.Controllers.PostIndexViewModel(Model.Id))
-                    </div>
-                </div>
-                <textarea maxlength="50" id="message" rows="3" style="width:400px"></textarea><br />
-                <input type="button" value="Send Message" onclick="newPost()" />
-            </div>
-        </div>
-    </div>
-
-
+    
 <br />
 
+<div class="row">
+        
+            <div class="panel panel-default">
+                <div class="panel-heading">Age: </div>
+                <div class="panel-body">@Html.DisplayFor(m => m.Age)</div>
+                <div class="panel-heading">Gender: </div>
+                <div class="panel-body">@Html.DisplayFor(m => m.Gender)</div>
+                <div class="panel-heading">Looking for: </div>
+                <div class="panel-body">@Html.DisplayFor(m => m.LookingFor)</div>
+            </div>
+        
+    </div>
     <div class="row">
-            <div class="col-md-3">
-                <div class="panel panel-default">
-                    <div class="panel-heading">Age: </div>
-                    <div class="panel-body">@Html.DisplayFor(m => m.Age)</div>
-                    <div class="panel-heading">Gender: </div>
-                    <div class="panel-body">@Html.DisplayFor(m => m.Gender)</div>
-                    <div class="panel-heading">Looking for: </div>
-                    <div class="panel-body">@Html.DisplayFor(m => m.LookingFor)</div>
+        <div class="panel panel-default">
+                <div class="panel-heading">About me: </div>
+                <div class="panel-body">
+                    @Html.DisplayFor(m => m.About)
                 </div>
             </div>
-        </div>
+        
+    </div>
+</div>
+    </div>
 
-
-        <div class="row">
-            <div class="col-md-3">
-                <div class="panel panel-default">
-                    <div class="panel-heading">About me: </div>
-                    <div class="panel-body">
-                        @Html.DisplayFor(m => m.About)
-                    </div>
+<div id="kolumn2">
+    <div class="container">
+        <div class="panel panel-default" style="width: 400px;">
+                <div class="panel-heading">Messages:</div>
+                <div class="panel-body">
+                    @Html.Partial("../Post1/Index", new SeniorDating.Controllers.PostIndexViewModel(Model.Id))
                 </div>
             </div>
+            <textarea maxlength="50" id="message" rows="3" style="width:400px;"></textarea>
+        <br />
+            <input type="button" value="Send Message" onclick="newPost()" />
         </div>
     </div>
 
-
-
-
+    
     <script>
     function newPost() {
         var txt = $('#message').val().length;
