@@ -22,7 +22,7 @@ namespace SeniorDating.Controllers
                         Text = model.Text,
                         From = db.Users.Single(x => x.Id == model.From),
                         To = db.Users.Single(x => x.Id == model.To),
-
+                        Private = model.Private,
                     });
 
                     db.SaveChanges();

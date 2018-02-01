@@ -84,15 +84,18 @@ else
 <div id="kolumn2">
     <div class="container">
         <div class="panel panel-default" style="width: 400px;">
-                <div class="panel-heading">Messages:</div>
-                <div class="panel-body">
-                    @Html.Partial("../Post1/Index", new SeniorDating.Controllers.PostIndexViewModel(Model.Id))
-                </div>
+            <div class="panel-heading">Messages:</div>
+            <div class="panel-body">
+                @Html.Partial("../Post1/Index", new SeniorDating.Controllers.PostIndexViewModel(Model.Id))
             </div>
-            <textarea maxlength="50" id="message" rows="3" style="width:400px;"></textarea>
-        <br />
-            <input type="button" value="Send Message" onclick="newPost()" />
         </div>
+        <textarea maxlength="50" id="message" rows="3" style="width:400px;"></textarea>
+        <br />
+        <div class="checkbox">
+            <label><input type="checkbox" id="privatemessage" value="">Private</label>
+        </div>
+        <input type="button" value="Send Message" onclick="newPost()" />
+    </div>
     </div>
 
     
@@ -101,9 +104,15 @@ else
         var txt = $('#message').val().length;
         if (txt > 0) {
             var text = $('#message').val();
+            if ($("#privatemessage").is(':checked')) {
+                var private = true;
+            }
+            else {
+                var private = false;
+            }
             var from = '@User.Identity.GetUserId()';
             var to = '@Model.Id';
-            var post = { From: from, To: to, Text: text };
+            var post = { From: from, To: to, Text: text, Private: private };
             $.ajax({
                 type: 'POST',
                 url: '@Url.Action("Post","Post", new { httproute = "" })',
