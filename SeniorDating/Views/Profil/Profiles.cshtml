@@ -11,13 +11,6 @@
     <link href="/Content/Site.css" rel="stylesheet" />
 </head>
 
-<script>
-function Hey()
-{
-    alert('Friend Request sent!');
-}
-        </script>
-
 <div class="container-fluid">
     <h2>@Html.DisplayFor(m => m.Name)</h2>
 </div>
@@ -104,7 +97,7 @@ else
         @if (HttpContext.Current.User.Identity.GetUserId().Equals(Model.Id))
          {
         <div class="panel panel-default" style="width: 400px;">
-            <div class="panel-heading">Pokes from People:</div>
+            <div class="panel-heading">You have been poked by:</div>
             <div class="panel-body">
                 @Html.Partial("../Poke/Index", new SeniorDating.Controllers.PokeIndexViewModel(Model.Id))
             </div>
@@ -113,7 +106,7 @@ else
          }
         else
         {
-            <input type="button" value="Poke" onclick="location.href='@Url.Action("Poke", "Poke", new { id = Model.Id })'" />
+            <input type="button" value="Poke" onclick="location.href='@Url.Action("Poke", "Poke", new { id = Model.Id })'; Poke();" />
         }
 
     </div>
@@ -151,6 +144,18 @@ else
                         }
                     ;
     </script>
+
+<script>
+    function Hey() {
+        alert('Friend Request sent!');
+    }
+</script>
+
+<script>
+    function Poke() {
+        alert('Poked!');
+    }
+</script>
 
 
 
