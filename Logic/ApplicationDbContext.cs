@@ -28,5 +28,7 @@ namespace SeniorDating.Models
         }
 
         public DbSet<Post> Posts { get; set; }
+
+        public DbSet<Poke> Pokes { get; set; }
     }
 }

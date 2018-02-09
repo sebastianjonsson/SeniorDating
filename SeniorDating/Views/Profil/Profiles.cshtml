@@ -94,12 +94,17 @@ else
         <div class="checkbox">
             <label><input type="checkbox" id="privatemessage" value="">Private</label>
         </div>
-        <input type="button" value="Send Message" onclick="newPost()" />
+        <div>
+            <input type="button" value="Send Message" onclick="newPost()" />
+            <br /> <br />
+
+            <input type="button" value="Poke" onclick="location.href='@Url.Action("Poke", "Profil", new { name = Model.UserName })'" />
+        </div>
+
     </div>
     </div>
 
-    
-    <script>
+<script>
     function newPost() {
         var txt = $('#message').val().length;
         if (txt > 0) {

@@ -27,6 +27,8 @@ namespace SeniorDating.Models
         public string File { get; set; }
        
         public string Content { get; set; }
+
+        public virtual ICollection<Poke> Pokes { get; set; }
         public virtual ICollection<Post> Posts { get; set; }
         public virtual ICollection<ApplicationUser> Friends { get; set; }
         public virtual ICollection<ApplicationUser> FriendRequests { get; set; }

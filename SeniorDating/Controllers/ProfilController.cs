@@ -7,6 +7,7 @@ using System.Web.Mvc;
 using SeniorDating.Models;
 using System.Data.Entity;
 using System.IO;
+using Microsoft.AspNet.Identity;
 
 namespace SeniorDating.Controllers
 {
@@ -15,7 +16,7 @@ namespace SeniorDating.Controllers
     {
         UserRepository repository = new UserRepository();
 
-        
+
         public ActionResult Profiles(ApplicationUser model)
         {
             try
@@ -108,7 +109,7 @@ namespace SeniorDating.Controllers
                     user2.Age = user.Age;
                     user2.About = user.About;
                     user2.Hidden = user.Hidden;
-                    
+
 
                     db.Entry(user2).State = EntityState.Modified;
                     db.SaveChanges();
@@ -140,7 +141,7 @@ namespace SeniorDating.Controllers
 
                     user.Content = upload.ContentType;
 
-                using (var reader = new BinaryReader(upload.InputStream))
+                    using (var reader = new BinaryReader(upload.InputStream))
                     {
                         user.Picture = reader.ReadBytes(upload.ContentLength);
                     }
@@ -153,7 +154,30 @@ namespace SeniorDating.Controllers
             {
                 RedirectToAction("Profiles", "Profil");
             }
-             return View();
+            return View();
+        }
+
+
+        public ActionResult Poke(Poke poke, string name)
+        {
+            try
+            {
+                var user = User.Identity.GetUserName();
+                var fromUser = db.Users.Single(x => x.UserName == user);
+                var to = db.Users.Single(x => x.UserName == name);
+
+                poke.From = fromUser;
+                poke.To = to;
+
+                db.Pokes.Add(poke);
+                db.SaveChanges();
+            }
+
+            catch
+            {
+
+            }
+            return RedirectToAction("OtherProfiles", "Profil", new { name = name });
         }
     }
 }
