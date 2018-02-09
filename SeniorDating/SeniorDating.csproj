@@ -203,6 +203,7 @@
     <Compile Include="Controllers\FriendController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\PokeController.cs" />
     <Compile Include="Controllers\Post1Controller.cs" />
     <Compile Include="Controllers\PostController.cs" />
     <Compile Include="Controllers\ProfilController.cs" />
@@ -268,6 +269,7 @@
     <Content Include="Views\Profil\EditProfile.cshtml" />
     <Content Include="Views\Post1\Index.cshtml" />
     <Content Include="Views\Friend\Friends.cshtml" />
+    <Content Include="Views\Poke\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

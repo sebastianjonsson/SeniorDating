@@ -1,0 +1,11 @@
+﻿@model SeniorDating.Controllers.PokeIndexViewModel
+@using Microsoft.AspNet.Identity;
+
+@foreach (var item in Model.Pokes)
+{
+
+    <div>
+        <h4><span><b>@Html.DisplayFor(modelItem => item.From.Name)</b> </span></h4>
+    </div>
+
+}

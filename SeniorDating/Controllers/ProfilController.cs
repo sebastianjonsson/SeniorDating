@@ -156,28 +156,5 @@ namespace SeniorDating.Controllers
             }
             return View();
         }
-
-
-        public ActionResult Poke(Poke poke, string name)
-        {
-            try
-            {
-                var user = User.Identity.GetUserName();
-                var fromUser = db.Users.Single(x => x.UserName == user);
-                var to = db.Users.Single(x => x.UserName == name);
-
-                poke.From = fromUser;
-                poke.To = to;
-
-                db.Pokes.Add(poke);
-                db.SaveChanges();
-            }
-
-            catch
-            {
-
-            }
-            return RedirectToAction("OtherProfiles", "Profil", new { name = name });
-        }
     }
 }

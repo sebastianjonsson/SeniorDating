@@ -96,10 +96,25 @@ else
         </div>
         <div>
             <input type="button" value="Send Message" onclick="newPost()" />
-            <br /> <br />
-
-            <input type="button" value="Poke" onclick="location.href='@Url.Action("Poke", "Profil", new { name = Model.UserName })'" />
         </div>
+
+        <br /> <br />
+
+        <br />
+        @if (HttpContext.Current.User.Identity.GetUserId().Equals(Model.Id))
+         {
+        <div class="panel panel-default" style="width: 400px;">
+            <div class="panel-heading">Pokes from People:</div>
+            <div class="panel-body">
+                @Html.Partial("../Poke/Index", new SeniorDating.Controllers.PokeIndexViewModel(Model.Id))
+            </div>
+        </div>
+        <br /> <br />
+         }
+        else
+        {
+            <input type="button" value="Poke" onclick="location.href='@Url.Action("Poke", "Poke", new { id = Model.Id })'" />
+        }
 
     </div>
     </div>
