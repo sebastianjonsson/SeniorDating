@@ -36,12 +36,23 @@ namespace SeniorDating.Controllers
         {
 
         }
-        public PostIndexViewModel(string Id)
+        public PostIndexViewModel(string Id, string userId)
         {
+            if(Id == userId)
+            { 
             using (var db = new ApplicationDbContext())
             {
                 this.Posts = db.Posts.Include(x => x.From).Where(i => i.To.Id == Id).ToList();
                 this.Id = Id;
+            }
+            }
+            else
+            {
+                using (var db = new ApplicationDbContext())
+                {
+                    this.Posts = db.Posts.Include(x => x.From).Where(i => i.To.Id == Id).Where(x => x.Private == false).ToList();
+                    this.Id = Id;
+                }
             }
 
         }

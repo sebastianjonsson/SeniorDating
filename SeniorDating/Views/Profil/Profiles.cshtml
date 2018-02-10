@@ -79,13 +79,14 @@ else
         <div class="panel panel-default" style="width: 400px;">
             <div class="panel-heading">Messages:</div>
             <div class="panel-body">
-                @Html.Partial("../Post1/Index", new SeniorDating.Controllers.PostIndexViewModel(Model.Id))
+                @Html.Partial("../Post1/Index", new SeniorDating.Controllers.PostIndexViewModel(Model.Id, User.Identity.GetUserId()))
             </div>
         </div>
         <textarea maxlength="50" id="message" rows="3" style="width:400px;"></textarea>
         <br />
         <div class="checkbox">
-            <label><input type="checkbox" id="privatemessage" value="">Private</label>
+            <label><input type="checkbox" id="privatemessage" value="" onclick="PrivateLabel();">Private</label>
+            <label id="lblPrivate"></label>
         </div>
         <div>
             <input type="button" value="Send Message" onclick="newPost()" />
@@ -154,6 +155,15 @@ else
 <script>
     function Poke() {
         alert('Poked!');
+    }
+</script>
+
+<script>
+    function PrivateLabel()
+    {
+        var name = '@User.Identity.GetUserName()';
+        $("#lblPrivate").text("Only" + " " + name + " " + "can read this Message.");
+
     }
 </script>
 
