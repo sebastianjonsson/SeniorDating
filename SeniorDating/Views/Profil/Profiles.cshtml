@@ -16,14 +16,13 @@
 </div>
 @if (HttpContext.Current.User.Identity.GetUserId().Equals(Model.Id))
 {
-    <a href="@Url.Action("EditProfile", "Profil", new { id = User.Identity.GetUserId() })">
-            Edit Profile
-            <br />
-        </a>
- }
+        <button onclick="location.href= '@Url.Action("EditProfile", "Profil", new { id = User.Identity.GetUserId() })'"> Edit Profile </button>
+    
+    <br />
+}
 else
 {
-        <button onclick="location.href='@Url.Action("AddRequest", "Friend", new { id = Model.Id })'; Hey(); ">Add Friend</button>
+    <button onclick="location.href='@Url.Action("AddRequest", "Friend", new { id = Model.Id })'; Hey(); ">Add Friend</button>
 }
 
 <br />
@@ -33,25 +32,25 @@ else
         <div class="row">
             <img height="200" width="200" src="@Url.Action("Image", new { id = Model.Id })" onError="this.onerror=null;this.src='http://www.tabyglantan.se/files/user/grafik/profil.png'" />
 
-                <br />
+            <br />
 
-                @if (HttpContext.Current.User.Identity.GetUserId().Equals(Model.Id))
+            @if (HttpContext.Current.User.Identity.GetUserId().Equals(Model.Id))
+            {
+                using (Html.BeginForm("Picture", "Profil", new { id = Model.Id }, FormMethod.Post, new { enctype = "multipart/form-data" }))
                 {
-                    using (Html.BeginForm("Picture", "Profil", new { id = Model.Id }, FormMethod.Post, new { enctype = "multipart/form-data" }))
-                    {
-                        <br />
-                        <input type="file" name="upload" accept=".png,.jpg,.jpeg,.gif,.bmp" />
-                        <br />
-                        <input type="submit" value="Upload Picture" />
-                    }
+                    <br />
+                    <input type="file" name="upload" accept=".png,.jpg,.jpeg,.gif,.bmp" />
+                    <br />
+                    <input type="submit" value="Upload Picture" />
                 }
-            
-        </div>
-    
-<br />
+            }
 
-<div class="row">
-        
+        </div>
+
+        <br />
+
+        <div class="row">
+
             <div class="panel panel-default">
                 <div class="panel-heading">Age: </div>
                 <div class="panel-body">@Html.DisplayFor(m => m.Age)</div>
@@ -60,19 +59,19 @@ else
                 <div class="panel-heading">Looking for: </div>
                 <div class="panel-body">@Html.DisplayFor(m => m.LookingFor)</div>
             </div>
-        
-    </div>
-    <div class="row">
-        <div class="panel panel-default">
+
+        </div>
+        <div class="row">
+            <div class="panel panel-default">
                 <div class="panel-heading">About me: </div>
                 <div class="panel-body">
                     @Html.DisplayFor(m => m.About)
                 </div>
             </div>
-        
+
+        </div>
     </div>
 </div>
-    </div>
 
 <div id="kolumn2">
     <div class="container">
@@ -85,8 +84,8 @@ else
         <textarea maxlength="50" id="message" rows="3" style="width:400px;"></textarea>
         <br />
         <div class="checkbox">
-            <label><input type="checkbox" id="privatemessage" value="" onclick="PrivateLabel();">Private</label>
-            <label id="lblPrivate"></label>
+            <label><input type="checkbox" id="privatemessage" value="" onclick="PrivateLabel();">Private - </label>
+            <label id="lblPrivate">Everyone can read this Message.</label>
         </div>
         <div>
             <input type="button" value="Send Message" onclick="newPost()" />
@@ -96,22 +95,22 @@ else
 
         <br />
         @if (HttpContext.Current.User.Identity.GetUserId().Equals(Model.Id))
-         {
-        <div class="panel panel-default" style="width: 400px;">
-            <div class="panel-heading">You have been poked by: <img height="40" width="50" src="http://moziru.com/images/hello-clipart-hand-wave-4.jpg" /></div>
-            <div class="panel-body">
-                @Html.Partial("../Poke/Index", new SeniorDating.Controllers.PokeIndexViewModel(Model.Id))
+        {
+            <div class="panel panel-default" style="width: 400px;">
+                <div class="panel-heading">You have been poked by: <img height="40" width="50" src="http://moziru.com/images/hello-clipart-hand-wave-4.jpg" /></div>
+                <div class="panel-body">
+                    @Html.Partial("../Poke/Index", new SeniorDating.Controllers.PokeIndexViewModel(Model.Id))
+                </div>
             </div>
-        </div>
-        <br /> <br />
-         }
+            <br /> <br />
+        }
         else
         {
             <input type="button" value="Poke" onclick="location.href='@Url.Action("Poke", "Poke", new { id = Model.Id })'; Poke();" />
         }
 
     </div>
-    </div>
+</div>
 
 <script>
     function newPost() {
@@ -144,7 +143,7 @@ else
                         }
                         }
                     ;
-    </script>
+</script>
 
 <script>
     function Hey() {
@@ -161,9 +160,13 @@ else
 <script>
     function PrivateLabel()
     {
-        var name = '@User.Identity.GetUserName()';
-        $("#lblPrivate").text("Only" + " " + name + " " + "can read this Message.");
-
+        var name = '@Model.Name';
+        if ($("#privatemessage").is(':checked')) {
+            $("#lblPrivate").text("Only" + " " + name + " " + "can read this Message.");
+        }
+        else {
+            $("#lblPrivate").text("Everyone can read this Message.");
+        }
     }
 </script>
 
