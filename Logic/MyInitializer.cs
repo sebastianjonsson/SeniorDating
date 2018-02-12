@@ -28,7 +28,10 @@ namespace Logic
                     Age = 123,
                     About = "I like to have fun and drink beer. :)",
                     LookingFor = "Both",
-                    Hidden = false
+                    Hidden = false,
+                    Country = "Sweden",
+                    City = "Örebro"
+                
                 };
 
                 userManager.CreateAsync(user, "User1!").Wait();

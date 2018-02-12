@@ -27,6 +27,8 @@ namespace SeniorDating.Controllers
                 model.Gender = user.Gender;
                 model.LookingFor = user.LookingFor;
                 model.About = user.About;
+                model.Country = user.Country;
+                model.City = user.City;
 
                 return View(model);
             }
@@ -60,6 +62,8 @@ namespace SeniorDating.Controllers
                 model.Gender = user.Gender;
                 model.LookingFor = user.LookingFor;
                 model.About = user.About;
+                model.Country = user.Country;
+                model.City = user.City;
 
                 return View("Profiles", model);
             }

@@ -90,6 +90,12 @@ namespace SeniorDating.Models
         public int Age { get; set; }
 
         [Required]
+        public string Country { get; set; }
+
+        [Required]
+        public string City { get; set; }
+
+        [Required]
         public Gender Gender { get; set; }
 
         [Required]
