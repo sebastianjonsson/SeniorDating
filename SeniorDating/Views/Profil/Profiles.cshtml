@@ -5,24 +5,23 @@
 
     ViewBag.Title = "Profile";
 }
+<!DOCTYPE html>
+<meta charset="utf-8" />
+<link href="/Content/Site.css" rel="stylesheet" />
 
-<head>
-    <meta charset="utf-8" />
-    <link href="/Content/Site.css" rel="stylesheet" />
-</head>
 
 <div class="container-fluid">
     <h2>@Html.DisplayFor(m => m.Name)</h2>
 </div>
 @if (HttpContext.Current.User.Identity.GetUserId().Equals(Model.Id))
 {
-        <button onclick="location.href= '@Url.Action("EditProfile", "Profil", new { id = User.Identity.GetUserId() })'" class="btn btn-info"> Edit Profile </button>
+<button onclick="location.href= '@Url.Action("EditProfile", "Profil", new { id = User.Identity.GetUserId() })'" class="btn btn-info"> @SeniorDating.ResourceLanguages.ResourceProfile.EditProfile</button>
     
     <br />
 }
 else
 {
-    <button onclick="location.href='@Url.Action("AddRequest", "Friend", new { id = Model.Id })'; Hey(); " class="btn btn-info">Add Friend</button>
+    <button onclick="location.href='@Url.Action("AddRequest", "Friend", new { id = Model.Id })'; Hey(); " class="btn btn-info">@SeniorDating.ResourceLanguages.ResourceProfile.AddFriend</button>
 }
 
 <br />
@@ -41,7 +40,7 @@ else
                     <br />
                     <input type="file"class="btn btn-info" name="upload" accept=".png,.jpg,.jpeg,.gif,.bmp" />
                     <br />
-                    <input type="submit" class="btn btn-info" value="Upload Picture" />
+                    <input type="submit" class="btn btn-info" value="@SeniorDating.ResourceLanguages.ResourceProfile.BtnUpload" />
                 }
             }
 
@@ -52,22 +51,22 @@ else
         <div class="row">
 
             <div class="panel panel-info">
-                <div class="panel-heading">Age: </div>
+                <div class="panel-heading">@SeniorDating.ResourceLanguages.ResourceProfile.Age: </div>
                 <div class="panel-body">@Html.DisplayFor(m => m.Age)</div>
-                <div class="panel-heading">Gender: </div>
+                <div class="panel-heading">@SeniorDating.ResourceLanguages.ResourceProfile.Gender: </div>
                 <div class="panel-body">@Html.DisplayFor(m => m.Gender)</div>
-                <div class="panel-heading">Looking for: </div>
+                <div class="panel-heading">@SeniorDating.ResourceLanguages.ResourceProfile.LookingFor: </div>
                 <div class="panel-body">@Html.DisplayFor(m => m.LookingFor)</div>
             </div>
 
         </div>
         <div class="row">
             <div class="panel panel-info">
-                <div class="panel-heading">About me: </div>
+                <div class="panel-heading">@SeniorDating.ResourceLanguages.ResourceProfile.About: </div>
                 <div class="panel-body">@Html.DisplayFor(m => m.About)</div>
-                <div class="panel-heading"> Country: </div>
+                <div class="panel-heading"> @SeniorDating.ResourceLanguages.ResourceProfile.Country: </div>
                 <div class="panel-body">@Html.DisplayFor(m => m.Country)</div>
-                <div class="panel-heading"> City: </div>
+                <div class="panel-heading"> @SeniorDating.ResourceLanguages.ResourceProfile.City: </div>
                 <div class="panel-body">@Html.DisplayFor(m => m.City)</div>
             </div>
 
@@ -78,7 +77,7 @@ else
 <div id="kolumn2">
     <div class="container">
         <div class="panel panel-info" style="width: 400px;">
-            <div class="panel-heading">Messages:</div>
+            <div class="panel-heading">@SeniorDating.ResourceLanguages.ResourceProfile.Messages:</div>
             <div class="panel-body">
                 @Html.Partial("../Post1/Index", new SeniorDating.Controllers.PostIndexViewModel(Model.Id, User.Identity.GetUserId()))
             </div>
@@ -86,11 +85,12 @@ else
         <textarea maxlength="50" id="message" rows="3" style="width:400px;"></textarea>
         <br />
         <div class="checkbox">
-            <label><input type="checkbox" id="privatemessage" value="" onclick="PrivateLabel();">Private - </label>
-            <label id="lblPrivate">Everyone can read this Message.</label>
+            <label><input type="checkbox" id="privatemessage" value="" onclick="PrivateLabel();">@SeniorDating.ResourceLanguages.ResourceProfile.Private - </label>
+            <label id="lblPrivate">@SeniorDating.ResourceLanguages.ResourceProfile.lblMessage.</label>
         </div>
         <div>
-            <input type="button" value="Send Message" class="btn btn-info" onclick="newPost()" />
+            <input type="button" value="@SeniorDating.ResourceLanguages.ResourceProfile.BtnSend" class="btn btn-info" onclick="newPost()" />
+            <label id="lblSend"></label>
         </div>
 
         <br />
@@ -99,7 +99,7 @@ else
         @if (HttpContext.Current.User.Identity.GetUserId().Equals(Model.Id))
         {
             <div class="panel panel-info" style="width: 400px;">
-                <div class="panel-heading">You have been poked by: <img height="40" width="50" src="http://moziru.com/images/hello-clipart-hand-wave-4.jpg" /></div>
+                <div class="panel-heading">@SeniorDating.ResourceLanguages.ResourceProfile.BeenPoked: <img height="40" width="50" src="http://moziru.com/images/hello-clipart-hand-wave-4.jpg" /></div>
                 <div class="panel-body">
                     @Html.Partial("../Poke/Index", new SeniorDating.Controllers.PokeIndexViewModel(Model.Id))
                 </div>
@@ -108,7 +108,7 @@ else
         }
         else
         {
-            <input type="button" value="Poke" class="btn btn-info" onclick="location.href='@Url.Action("Poke", "Poke", new { id = Model.Id })'; Poke()" />
+            <input type="button" value="@SeniorDating.ResourceLanguages.ResourceProfile.Poke" class="btn btn-info" onclick="location.href='@Url.Action("Poke", "Poke", new { id = Model.Id })'; Poke()" />
             <label id="lblPoke"></label>
         }
 
@@ -142,7 +142,7 @@ else
             })
             }
                         else {
-                            alert("You need to write a cute message!");
+                                 $("#lblSend").text('@SeniorDating.ResourceLanguages.ResourceProfile.LblSend');
                         }
                         }
                     ;
@@ -150,14 +150,14 @@ else
 
 <script>
     function Hey() {
-        alert('Friend Request sent!');
+        alert('@SeniorDating.ResourceLanguages.ResourceProfile.Request');
     }
 </script>
 
 <script>
     function Poke() {
         var name = '@Model.Name';
-        $("#lblPoke").append("You have sent a poke to " + name);
+        $("#lblPoke").text('@SeniorDating.ResourceLanguages.ResourceProfile.lblPoke ' + name);
     }
 </script>
 
@@ -166,10 +166,10 @@ else
     {
         var name = '@Model.Name';
         if ($("#privatemessage").is(':checked')) {
-            $("#lblPrivate").text("Only" + " " + name + " " + "can read this Message.");
+            $("#lblPrivate").text('@SeniorDating.ResourceLanguages.ResourceProfile.lblPrivate ' + name + ' @SeniorDating.ResourceLanguages.ResourceProfile.lblPrivate1');
         }
         else {
-            $("#lblPrivate").text("Everyone can read this Message.");
+            $("#lblPrivate").text('@SeniorDating.ResourceLanguages.ResourceProfile.lblPrivate2');
         }
     }
 </script>
