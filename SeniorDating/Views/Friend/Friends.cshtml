@@ -4,7 +4,7 @@
     ViewBag.Title = "Friends";
 }
 
-<h2>Friend Requests:</h2>
+<h2>@SeniorDating.ResourceLanguages.ResourceFriends.Friends:</h2>
 <div>
     @if (Model.FriendRequests.Count > 0)
     {
@@ -25,13 +25,13 @@
     }
     else
     {
-        <h3> No friendrequests..</h3>
+            <h3> @SeniorDating.ResourceLanguages.ResourceFriends.NoRequests.</h3>
     }
 
 </div>
 
 <div>
-    <h2>Friends:</h2>
+    <h2>@SeniorDating.ResourceLanguages.ResourceFriends.Friends:</h2>
     @if (Model.Friends.Count > 0)
     {
         foreach (var friend in Model.Friends)
@@ -48,6 +48,6 @@
     }
     else
     {
-        <h3> No friends :( </h3>
+            <h3> @SeniorDating.ResourceLanguages.ResourceFriends.NoFriends. </h3>
     }
 </div>

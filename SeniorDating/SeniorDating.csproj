@@ -224,6 +224,16 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resource.sv.resx</DependentUpon>
     </Compile>
+    <Compile Include="ResourceLanguages\ResourceFriends.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ResourceFriends.resx</DependentUpon>
+    </Compile>
+    <Compile Include="ResourceLanguages\ResourceFriends.sv.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ResourceFriends.sv.resx</DependentUpon>
+    </Compile>
     <Compile Include="ResourceLanguages\ResourceProfile.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -311,6 +321,14 @@
     <EmbeddedResource Include="ResourceLanguages\Resource.sv.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Resource.sv.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ResourceLanguages\ResourceFriends.sv.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>ResourceFriends.sv.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ResourceLanguages\ResourceFriends.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>ResourceFriends.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="ResourceLanguages\ResourceProfile.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
