@@ -108,7 +108,8 @@ else
         }
         else
         {
-            <input type="button" value="Poke" class="btn btn-info" onclick="location.href='@Url.Action("Poke", "Poke", new { id = Model.Id })'; Poke();" />
+            <input type="button" value="Poke" class="btn btn-info" onclick="location.href='@Url.Action("Poke", "Poke", new { id = Model.Id })'; Poke()" />
+            <label id="lblPoke"></label>
         }
 
     </div>
@@ -155,7 +156,8 @@ else
 
 <script>
     function Poke() {
-        alert('Poked!');
+        var name = '@Model.Name';
+        $("#lblPoke").append("You have sent a poke to " + name);
     }
 </script>
 
